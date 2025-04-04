@@ -4,12 +4,11 @@
     min-height: 100vh;
     position: relative;
     width: 100vw;
-    margin-top: 12rem;
   }
   
   .contact-button-wrapper {
     position: absolute;
-    top: 24px;
+    top: 14px;
     right: 24px;
   }
   
@@ -48,6 +47,7 @@
     font-family: Roboto, sans-serif;
     font-size: 28.8px;
     font-weight: 300;
+    margin-bottom: 10px;
   }
   
   .form-container {

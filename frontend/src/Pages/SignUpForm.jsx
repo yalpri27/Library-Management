@@ -1,6 +1,7 @@
 "use client";
 import * as React from "react";
 import "./SignUpForm.css";
+import Footer from "../components/Footer";
 
 function FormInput({ label, type, placeholder, required }) {
   return React.createElement(
@@ -101,80 +102,83 @@ function SignUpForm() {
   return React.createElement(
     "main",
     { className: "main-container" },
-    React.createElement(
-      "div",
-      { className: "contact-button-wrapper" },
-      React.createElement(ContactButton),
-    ),
-    React.createElement(
-      "section",
-      { className: "content-section" },
-      React.createElement(
-        "header",
-        { className: "header" },
-        React.createElement(
-          "h1",
-          { className: "title" },
-          "Sign Up with Archive !",
-        ),
-        React.createElement(
-          "p",
-          { className: "subtitle" },
-          "Your library catalog is available anywhere, anytime.",
-        ),
-      ),
+    [
       React.createElement(
         "div",
-        { className: "form-container" },
+        { className: "contact-button-wrapper" },
+        React.createElement(ContactButton),
+      ),
+      React.createElement(
+        "section",
+        { className: "content-section" },
         React.createElement(
-          "form",
-          { className: "form-content" },
+          "header",
+          { className: "header" },
           React.createElement(
-            "h2",
-            { className: "form-title" },
-            "Account Information:",
+            "h1",
+            { className: "title" },
+            "Sign Up with Archive !",
           ),
           React.createElement(
-            "div",
-            { className: "input-grid" },
-            React.createElement(FormInput, {
-              label: "First Name",
-              type: "text",
-              placeholder: "First Name",
-            }),
-            React.createElement(FormInput, {
-              label: "Last Name",
-              type: "text",
-              placeholder: "Last name",
-            }),
-            React.createElement(FormInput, {
-              label: "E-mail",
-              type: "email",
-              placeholder: "E-mail",
-            }),
-            React.createElement(FormInput, {
-              label: "Password",
-              type: "password",
-              placeholder: "Password",
-            }),
-            React.createElement(RoleSelect),
-            React.createElement(CountrySelect),
+            "p",
+            { className: "subtitle" },
+            "Your library catalog is available anywhere, anytime.",
           ),
+        ),
+        React.createElement(
+          "div",
+          { className: "form-container" },
           React.createElement(
-            "div",
-            { className: "submit-section" },
+            "form",
+            { className: "form-content" },
             React.createElement(
-              "button",
-              {
-                type: "submit",
-                className: "submit-button",
-              },
-              "Start My Library",
+              "h2",
+              { className: "form-title" },
+              "Account Information:",
+            ),
+            React.createElement(
+              "div",
+              { className: "input-grid" },
+              React.createElement(FormInput, {
+                label: "First Name",
+                type: "text",
+                placeholder: "First Name",
+              }),
+              React.createElement(FormInput, {
+                label: "Last Name",
+                type: "text",
+                placeholder: "Last name",
+              }),
+              React.createElement(FormInput, {
+                label: "E-mail",
+                type: "email",
+                placeholder: "E-mail",
+              }),
+              React.createElement(FormInput, {
+                label: "Password",
+                type: "password",
+                placeholder: "Password",
+              }),
+              React.createElement(RoleSelect),
+              React.createElement(CountrySelect),
+            ),
+            React.createElement(
+              "div",
+              { className: "submit-section" },
+              React.createElement(
+                "button",
+                {
+                  type: "submit",
+                  className: "submit-button",
+                },
+                "Start My Library",
+              ),
             ),
           ),
         ),
       ),
-    ),
+      React.createElement(Footer)
+    ]
   );
 }
 

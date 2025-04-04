@@ -21,8 +21,7 @@ const App = () => {
         <Route path="/books" element={<BookPage />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/footer" element={<Footer />} />
-        
-
+        <Route path="/sidebar" element={<Sidebar />} />
       </Routes>
     </Router>
   );

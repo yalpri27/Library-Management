@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Layout, Row, Col, Card, Typography, Divider, Button, Rate, Carousel, Tag, Space } from "antd";
+import Footer from "../components/Footer";
+import Sidebar from "../components/sidebar";
 
 const { Content } = Layout;
 const { Title, Paragraph, Text } = Typography;
@@ -139,6 +141,7 @@ const BookPage = () => {
           </Row>
         </Card>
       </Content>
+      <Footer/>
     </Layout>
   );
 };
