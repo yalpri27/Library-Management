@@ -1,28 +1,24 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import SignUpForm from "./pages/SignUpForm";
+import LoginForm from "./pages/LoginForm";
 import BookPage from "./Pages/BookPage";
-import UserProfile from "./Pages/UserProfile";
+import ProfilePage from "./pages/Profile";
+ // Profile Page
 
+import "./App.css";
 
 const App = () => {
   return (
     <Router>
-      <div className="app-container">
-        {/* Navbar */}
-        <nav className="navbar">
-          <h2>📚 Library System</h2>
-          <div className="nav-links">
-            <Link to="/">Home</Link>
-            <Link to="/profile">Profile</Link>
-          </div>
-        </nav>
+      <Routes>
+        <Route path="/" element={<SignUpForm />} />
+        <Route path="/login" element={<LoginForm />} />
+        
+        <Route path="/books" element={<BookPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
 
-        {/* Routes */}
-        <Routes>
-          <Route path="/" element={<BookPage />} />
-          <Route path="/profile" element={<UserProfile />} />
-        </Routes>
-      </div>
+      </Routes>
     </Router>
   );
 };
