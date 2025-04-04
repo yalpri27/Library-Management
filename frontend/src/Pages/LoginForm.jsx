@@ -1,6 +1,7 @@
 "use client";
 import * as React from "react";
 import "./login.css";
+import Footer from "../components/Footer";
 
 const InputField = ({
   type = "text",
@@ -64,43 +65,46 @@ const LoginForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="login-form">
-      <header className="form-header">
-        <h1 className="login-title">
-          <span className="login-title-text">Login</span>
-        </h1>
+    <div className="login-page-container">
+      <form onSubmit={handleSubmit} className="login-form">
+        <header className="form-header">
+          <h1 className="login-title">
+            <span className="login-title-text">Login</span>
+          </h1>
 
-        <InputField
-          type="email"
-          placeholder="E-mail"
-          value={email}
-          onChange={setEmail}
-        />
+          <InputField
+            type="email"
+            placeholder="E-mail"
+            value={email}
+            onChange={setEmail}
+          />
 
-        <InputField
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={setPassword}
-          rightContent={<button className="forgot-button">Forgot ?</button>}
-        />
+          <InputField
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={setPassword}
+            rightContent={<button className="forgot-button">Forgot ?</button>}
+          />
 
-        <CheckboxField
-          label="Remember me"
-          checked={rememberMe}
-          onChange={setRememberMe}
-        />
+          <CheckboxField
+            label="Remember me"
+            checked={rememberMe}
+            onChange={setRememberMe}
+          />
 
-        <LoginButton onClick={handleSubmit} />
-      </header>
+          <LoginButton onClick={handleSubmit} />
+        </header>
 
-      <p className="signup-text">
-        Don't have an account?{" "}
-        <a href="#" className="signup-link">
-          Sign Up!
-        </a>
-      </p>
-    </form>
+        <p className="signup-text">
+          Don't have an account?{" "}
+          <a href="#" className="signup-link">
+            Sign Up!
+          </a>
+        </p>
+      </form>
+      <Footer/>
+    </div>
   );
 };
 

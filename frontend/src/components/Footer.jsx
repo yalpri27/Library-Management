@@ -21,7 +21,7 @@ const Footer = () => {
   };
 
   return (
-    <footer style={{ backgroundColor: '#1f1f1f', color: '#fff', padding: '48px 24px' }}>
+    <footer style={{ backgroundColor: '#1f1f1f', color: '#fff', padding: '48px 24px', marginTop: '20px' }}>
       <div className="container" style={{ maxWidth: 1200, margin: '0 auto' }}>
         <Row gutter={[32, 32]}>
           {/* Company Info */}

@@ -1,6 +1,7 @@
 import React from "react";
 import { Layout, Row, Col, Card, Typography, Button, Input, Avatar, Divider, Space } from "antd";
 import { SearchOutlined, BellOutlined, MailOutlined } from "@ant-design/icons";
+import Footer from "../components/Footer";
 
 const { Header, Content, Sider } = Layout;
 const { Title, Text } = Typography;
@@ -101,6 +102,7 @@ const ProfilePage = () => {
           </Card>
 
         </Content>
+        <Footer/>
       </Layout>
     </Layout>
   );
