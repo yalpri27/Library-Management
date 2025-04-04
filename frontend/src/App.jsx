@@ -4,6 +4,7 @@ import SignUpForm from "./pages/SignUpForm";
 import LoginForm from "./pages/LoginForm";
 import BookPage from "./Pages/BookPage";
 import ProfilePage from "./pages/Profile";
+import Footer from "./components/Footer";
  // Profile Page
 
 import "./App.css";
@@ -17,6 +18,8 @@ const App = () => {
         
         <Route path="/books" element={<BookPage />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/footer" element={<Footer />} />
+        
 
       </Routes>
     </Router>
