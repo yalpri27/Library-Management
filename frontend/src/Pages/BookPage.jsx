@@ -1,147 +1,179 @@
-import React, { useState, useEffect } from "react";
-import { Layout, Row, Col, Card, Typography, Divider, Button, Rate, Carousel, Tag, Space } from "antd";
-import Footer from "../components/Footer";
+import React from "react";
+import RecommendationsSection from "../components/RecommendationsSection";
+import BookDetails from "../components/BookDetails";
+import FeaturedEditions from "../components/FeaturedEditions";
 import Sidebar from "../components/sidebar";
 
+
+import { Carousel } from "antd";
+import {
+  Layout,
+  Typography,
+  Row,
+  Col,
+  Image,
+  Button,
+  Card,
+  Divider,
+  List,
+  Space,
+} from "antd";
+import SuggestionsSection from "../components/SuggestionsSection";
+
 const { Content } = Layout;
-const { Title, Paragraph, Text } = Typography;
+const { Title, Text, Link } = Typography;
 
 const BookPage = () => {
-  const [book, setBook] = useState(null);
-  const [recommendedBooks, setRecommendedBooks] = useState([]);
-  const [authorBooks, setAuthorBooks] = useState([]);
-  const [quotes, setQuotes] = useState([]);
-
-  useEffect(() => {
-    setTimeout(() => {
-      setBook({
-        title: "Visions of the Daughters of Albion",
-        author: "William Blake",
-        rating: 3.8,
-        reviews: 2,
-        isbn: "978-0140422153",
-        publisher: "Penguin Classics",
-        publishedDate: "1793",
-        language: "English",
-        subjects: ["Poetry", "Symbolism", "Freedom"],
-        image: "https://i.pinimg.com/736x/78/f9/6e/78f96ea7bd019bb16cb6c3f0ed82bda2.jpg",
-        description:
-          "A visionary poem by William Blake, exploring themes of oppression, freedom, and sexuality. The work critiques societal norms and advocates for personal liberation.",
-        themes: [
-          "Freedom vs. Oppression",
-          "Role of Women in Society",
-          "Love and Desire",
-          "Religious and Mythological Symbolism",
-        ],
-      });
-
-      setAuthorBooks([
-        { id: 1, title: "Milton: A Poem", author: "William Blake", image: "https://i.pinimg.com/736x/ed/eb/77/edeb779cda95e28331b7152a5a98a690.jpg" },
-        { id: 2, title: "Jerusalem", author: "William Blake", image: "https://i.pinimg.com/736x/c1/db/0d/c1db0d51e4403a77fd1438f1ef6ae6d2.jpg" },
-        { id: 3, title: "Songs of Innocence and Experience", author: "William Blake", image: "https://i.pinimg.com/736x/05/37/63/053763e71a6ad72700fac7049300296b.jpg" },
-        { id: 4, title: "The Marriage of Heaven and Hell", author: "William Blake", image: "https://i.pinimg.com/736x/95/9c/8f/959c8f084bc42c37719629b304adee17.jpg" },
-      ]);
-
-      setRecommendedBooks([
-        { id: 5, title: "Paradise Lost", author: "John Milton", image: "https://i.pinimg.com/736x/ed/eb/77/edeb779cda95e28331b7152a5a98a690.jpg" },
-        { id: 6, title: "The Divine Comedy", author: "Dante Alighieri", image: "https://i.pinimg.com/736x/59/0c/18/590c187a1d79efdc19dc5f6087d74a79.jpg" },
-        { id: 7, title: "Leaves of Grass", author: "Walt Whitman", image: "https://i.pinimg.com/736x/6e/44/81/6e4481ec7cea43b11676ff71716f3366.jpg" },
-        { id: 8, title: "The Waste Land", author: "T.S. Eliot", image: "https://i.pinimg.com/736x/82/c2/94/82c29458246cc8ffdadc5cf5a0aec01c.jpg" },
-      ]);
-
-      setQuotes([
-        "In soft anguish and silent lamentation, the daughters of Albion sigh and weep.",
-        "The eye sees more than the heart knows.",
-        "Opposition is true friendship.",
-        "What is now proved was once only imagined.",
-        "He who desires but acts not, breeds pestilence.",
-      ]);
-    }, 2000);
-  }, []);
+  const editions = [
+    {
+      title: "Visions of the daughters of Albion",
+      year: "2002",
+      publisher: "Huntington Library",
+      language: "English",
+      action: "Borrow",
+    },
+    {
+      title: "Visions of the daughters of Albion ...",
+      year: "1884, Printed by W. Blake, 1793.",
+      publisher: "[Edmonton, Eng.]",
+      language: "English",
+      action: "Locate",
+    },
+  ];
 
   return (
-    <Layout style={{ background: "#fff", minHeight: "100vh", padding: "40px" }}>
+    
+    <Layout style={{paddingTop: '0.5%'}}>
       <Content>
-        <Title level={1} style={{ textAlign: "left", marginBottom: "20px" }}>
-          {book ? book.title : "Loading..."}
-        </Title>
-
-        {/* Book Overview Section */}
-        <Card style={{ padding: "20px", borderRadius: "12px", boxShadow: "0px 6px 12px rgba(0,0,0,0.1)" }}>
-          <Row gutter={[32, 32]} align="middle">
-            <Col xs={24} sm={8} md={6}>
-              {book ? (
-                <img
-                  src={book.image}
-                  alt="Book Cover"
-                  style={{
-                    width: "100%",
-                    borderRadius: "12px",
-                    boxShadow: "0px 6px 10px rgba(0,0,0,0.2)",
-                  }}
+        <Row gutter={32}>
+          
+          {/* Sidebar */}
+          <Col xs={24} md={6}>
+            <Card
+              style={{ borderRadius: 10 }}
+              cover={
+                <Image
+                  alt="Visions of the daughters of Albion"
+                  src="https://covers.openlibrary.org/b/id/240726-L.jpg"
+                  style={{ borderRadius: 10 }}
                 />
-              ) : (
-                <p>Loading cover...</p>
-              )}
-            </Col>
-            <Col xs={24} sm={16} md={18}>
-              {book && (
-                <>
-                  <Paragraph><strong>Author:</strong> {book.author}</Paragraph>
-                  <Rate allowHalf disabled value={book.rating} /> <Text>({book.reviews} Reviews)</Text>
-                  <Divider />
-                  <Paragraph><strong>Publisher:</strong> {book.publisher}</Paragraph>
-                  <Paragraph><strong>Published:</strong> {book.publishedDate}</Paragraph>
-                  <Paragraph><strong>ISBN:</strong> {book.isbn}</Paragraph>
-                  <Paragraph><strong>Language:</strong> {book.language}</Paragraph>
-                  <Paragraph><strong>Subjects:</strong> {book.subjects.join(", ")}</Paragraph>
-                  <Space size="middle">
-                    <Button type="primary" size="large">Borrow</Button>
-                    <Button size="large">Wishlist</Button>
-                  </Space>
-                </>
-              )}
-            </Col>
-          </Row>
-        </Card>
+              }
+            >
+              <Space direction="vertical" style={{ width: "100%" }}>
+                <Button type="primary" block>
+                  Borrow ▼
+                </Button>
+                <Button block>Want to Read ▼</Button>
+              </Space>
 
-        {/* Top Quotes */}
-        <Card style={{ marginTop: "40px" }}>
-          <Title level={3}>Top Quotes</Title>
-          <Carousel autoplay dots={false} style={{ textAlign: "center" }}>
-            {quotes.map((quote, index) => (
-              <div key={index}>
-                <Text italic style={{ fontSize: "18px" }}>"{quote}"</Text>
-              </div>
-            ))}
-          </Carousel>
-        </Card>
+              <Divider />
 
-        {/* Book Themes */}
-        <Card style={{ marginTop: "40px" }}>
-          <Title level={3}>Themes</Title>
-          <Space size="middle">
-            {book && book.themes.map((theme, index) => (
-              <Tag key={index} color="blue">{theme}</Tag>
-            ))}
-          </Space>
-        </Card>
+              <Space direction="horizontal" style={{ justifyContent: "space-between", width: "100%" }}>
+                <Text>⭐</Text>
+                <Text>✏️ Review</Text>
+                <Text>📝 Notes</Text>
+                <Text>🔗 Share</Text>
+              </Space>
 
-        {/* More by This Author */}
-        <Card style={{ marginTop: "40px" }}>
-          <Title level={3}>More by {book ? book.author : "the author"}</Title>
-          <Row gutter={16}>
-            {authorBooks.map((item) => (
-              <Col key={item.id} span={6}>
-                <Card cover={<img alt={item.title} src={item.image} style={{ height: "200px", objectFit: "cover" }} />}>
-                  <Card.Meta title={item.title} description={item.author} />
-                </Card>
-              </Col>
-            ))}
-          </Row>
+              <Divider />
+
+              <Divider />
+
+            <Text strong>Check nearby libraries</Text>
+            <ul style={{ paddingLeft: 20, marginBottom: 24, lineHeight: "2" }}>
+            <li><Link href="#">Library.link</Link></li>
+             <li><Link href="#">WorldCat</Link></li>
+                </ul>
+
+              <Text strong>Buy this book</Text>
+              <ul style={{ paddingLeft: 20, marginBottom: 16, lineHeight: "2" }}>
+              <li><Link href="#">Better World Books</Link></li>
+              <li><Link href="#">Amazon</Link></li>
+              <li><Link href="#">More</Link></li>
+              </ul>
+
+            <Text type="secondary" style={{ fontSize: 12, lineHeight: "1.8" }}>
+             When you buy books using these links the Internet Archive may earn a small commission.
+             </Text>
+
+            </Card>
+          </Col>
+
+          {/* Main Book Details */}
+          <Col xs={24} md={18}>
+            <Title level={2}>Visions of the daughters of Albion</Title>
+            <Text>
+              by <Link>William Blake</Link>
+            </Text>
+            <br />
+            <Text strong style={{ color: "#faad14" }}>★ 5.0 (2 ratings)</Text>
+            <Text style={{ marginLeft: 10 }}> · 2 Want to read · 1 Have read</Text>
+            <Divider />
+
+            <Row gutter={16} style={{ marginBottom: 20 }}>
+              <Col><Text strong>Publish Date:</Text> 2002</Col>
+              <Col><Text strong>Publisher:</Text> Huntington Library</Col>
+              <Col><Text strong>Language:</Text> English</Col>
+              <Col><Text strong>Pages:</Text> 78</Col>
+            </Row>
+
+            <Text type="secondary">Subjects: English poetry, Illustrations, Poetry (poetic works by one author)</Text>
+            <br />
+            <Text type="secondary">People: William Blake (1757–1827)</Text>
+            <Divider />
+
+            <Title level={4}>Showing 2 featured editions</Title>
+            <FeaturedEditions />
+            <BookDetails />
+
+{/* Community Reviews Section */}
+<Card style={{ marginTop: 24 }}>
+  <Title level={5}>Community Reviews (0)</Title>
+  <Text>No community reviews have been submitted for this work.</Text>
+  <br />
+  <Link href="#" style={{ display: "inline-block", marginTop: 8 }}>
+    + Log in to add your community review
+  </Link>
+</Card>
+
+{/* Lists Section */}
+<Card style={{ marginTop: 24 }}>
+  <Row justify="space-between" align="middle" style={{ marginBottom: 16 }}>
+    <Title level={5} style={{ margin: 0 }}>Lists</Title>
+    <Link href="#">See All</Link>
+  </Row>
+
+  <Row gutter={16}>
+    {[1, 2, 3].map((item) => (
+      <Col key={item}>
+        <Card
+          hoverable
+          style={{ width: 120 }}
+          cover={
+            <Image
+              alt="List cover"
+              src="https://covers.openlibrary.org/b/id/240726-L.jpg"
+              preview={false}
+            />
+          }
+        >
+          <Link href="#" strong style={{ display: "block", marginBottom: 4 }}>
+            Art & Architecture
+          </Link>
+          <Text type="secondary" style={{ fontSize: 12 }}>
+            from <Link href="#">Stephen Partington</Link>
+          </Text>
         </Card>
+      </Col>
+    ))}
+  </Row>
+</Card>
+<SuggestionsSection />
+
+
+          </Col>
+        </Row>
       </Content>
-      <Footer/>
     </Layout>
   );
 };
