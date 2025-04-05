@@ -60,9 +60,9 @@ export default function Sidebar() {
           { text: "Library", path: "/library" },
           { text: "Wishlist", path: "/wishlist" },
           { text: "My Library", path: "/my-library" },
-          { text: "Settings", path: "/settings" },
+          // { text: "Settings", path: "/settings" },
           { text: "Contact Us", path: "/contact" },
-          { text: "Support", path: "/support" },
+          { text: "Profile", path: "/profile" },
           { text: "Logout", path: "/logout" },
         ].map(({ text, path }) => (
           <Menu.Item
