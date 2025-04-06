@@ -26,7 +26,7 @@ const Footer = () => {
         <Row gutter={[32, 32]}>
           {/* Company Info */}
           <Col xs={24} md={6}>
-            <Title level={4} style={{ color: '#fff' }}>Book Library</Title>
+            <Title level={4} style={{ color: '#fff' }}>Archive</Title>
             <Paragraph style={{ color: '#ccc' }}>
               Your digital gateway to endless stories and knowledge.
             </Paragraph>
@@ -88,7 +88,7 @@ const Footer = () => {
         <Row justify="center" style={{ marginTop: 48, borderTop: '1px solid #333', paddingTop: 24 }}>
           <Col>
             <Paragraph style={{ color: '#999' }}>
-              © {new Date().getFullYear()} Book Library. All rights reserved.
+              © {new Date().getFullYear()} Archive Library. All rights reserved.
             </Paragraph>
           </Col>
         </Row>

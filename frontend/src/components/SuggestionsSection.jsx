@@ -8,17 +8,17 @@ const suggestions = {
     { title: "Their Eyes Were Watching God", img: "https://covers.openlibrary.org/b/id/1-M.jpg", action: "Read" },
     { title: "Biography", img: "https://covers.openlibrary.org/b/id/2-M.jpg", action: "Read" },
     { title: "For the Word", img: "https://covers.openlibrary.org/b/id/3-M.jpg", action: "Read" },
-    { title: "Marti y la Música", img: "https://covers.openlibrary.org/b/id/4-M.jpg", action: "Borrow" },
-    { title: "Blue Book", img: "https://covers.openlibrary.org/b/id/5-M.jpg", action: "Borrow" },
-    { title: "Black Book", img: "https://covers.openlibrary.org/b/id/6-M.jpg", action: "Borrow" },
+    { title: "Marti y la Música", img: "https://covers.openlibrary.org/b/id/4-M.jpg", action: "Read" },
+    { title: "Blue Book", img: "https://covers.openlibrary.org/b/id/5-M.jpg", action: "Read" },
+    { title: "Black Book", img: "https://covers.openlibrary.org/b/id/6-M.jpg", action: "Read" },
   ],
   moreByAuthor: [
-    { title: "Lessons from the Early Church", img: "https://covers.openlibrary.org/b/id/7-M.jpg", action: "Borrow" },
-    { title: "Armstrong is My Uncle", img: "https://covers.openlibrary.org/b/id/8-M.jpg", action: "Borrow" },
-    { title: "Japanese Script", img: "https://covers.openlibrary.org/b/id/9-M.jpg", action: "Borrow" },
-    { title: "Sci-Fi Adventures", img: "https://covers.openlibrary.org/b/id/10-M.jpg", action: "Borrow" },
-    { title: "Texas Cattle Disease", img: "https://covers.openlibrary.org/b/id/11-M.jpg", action: "Borrow" },
-    { title: "Old Book", img: "https://covers.openlibrary.org/b/id/12-M.jpg", action: "Borrow" },
+    { title: "Lessons from the Early Church", img: "https://covers.openlibrary.org/b/id/7-M.jpg", action: "Read" },
+    { title: "Armstrong is My Uncle", img: "https://covers.openlibrary.org/b/id/8-M.jpg", action: "Read" },
+    { title: "Japanese Script", img: "https://covers.openlibrary.org/b/id/9-M.jpg", action: "Read" },
+    { title: "Sci-Fi Adventures", img: "https://covers.openlibrary.org/b/id/10-M.jpg", action: "Read" },
+    { title: "Texas Cattle Disease", img: "https://covers.openlibrary.org/b/id/11-M.jpg", action: "Read" },
+    { title: "Old Book", img: "https://covers.openlibrary.org/b/id/12-M.jpg", action: "Read" },
   ],
 };
 
@@ -31,7 +31,7 @@ const BookGrid = ({ books }) => (
           cover={<img alt={book.title} src={book.img} style={{ height: 200, objectFit: "cover" }} />}
           bodyStyle={{ textAlign: "center" }}
         >
-          <Button type={book.action === "Read" ? "default" : "primary"}>{book.action}</Button>
+          <Button type="default">Read</Button>
         </Card>
       </Col>
     ))}

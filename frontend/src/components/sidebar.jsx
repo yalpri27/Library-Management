@@ -22,8 +22,8 @@ export default function Sidebar() {
       style={{
         background: "linear-gradient(to bottom, #1E3A8A, #1E40AF)",
         color: "white",
-        borderTopRightRadius: "20px",
-        borderBottomRightRadius: "20px",
+        borderTopRightRadius: "0px",
+        borderBottomRightRadius: "0px",
       }}
     >
       {/* Menu Icon */}
@@ -57,9 +57,9 @@ export default function Sidebar() {
         }}
       >
         {[
-          { text: "Library", path: "/library" },
+          { text: "My Library", path: "/library" },
           { text: "Wishlist", path: "/wishlist" },
-          { text: "My Library", path: "/my-library" },
+          // { text: "My Library", path: "/my-library" },
           // { text: "Settings", path: "/settings" },
           { text: "Contact Us", path: "/contact" },
           { text: "Profile", path: "/profile" },
@@ -72,7 +72,7 @@ export default function Sidebar() {
               textAlign: "center",
               background: activePath === path ? "white" : "transparent",
               color: activePath === path ? "#1E3A8A" : "white",
-              borderRadius: "8px",
+              borderRadius: "0px",
               marginBottom: "5px",
             }}
           >
@@ -80,6 +80,6 @@ export default function Sidebar() {
           </Menu.Item>
         ))}
       </Menu>
-    </Sider>
-  );
+    </Sider>
+  );
 }

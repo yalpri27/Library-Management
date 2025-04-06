@@ -169,7 +169,28 @@
       width: 90%;
       max-width: 960px;
     }
+  
+  
   }
+
+
+  .login-redirect {
+    margin-top: 1rem;
+    font-size: 0.95rem;
+    color: #555;
+  }
+  
+  .login-link {
+    color: #0077cc;
+    cursor: pointer;
+    text-decoration: underline;
+    margin-left: 4px;
+  }
+  
+  .login-link:hover {
+    color: #004999;
+  }
+  
   
   @media (width <= 640px) {
     .contact-button-wrapper {

@@ -1,6 +1,6 @@
 import background from "../assets/back.png"; // Adjust the path if needed
 import Sidebar from "./sidebar"; // Import Sidebar component
-
+import Footer from "./Footer";
 const ContactForm = () => {
   return (
     <div 
@@ -45,6 +45,7 @@ const ContactForm = () => {
           </form>
         </div>
       </div>
+      
     </div>
   );
 };

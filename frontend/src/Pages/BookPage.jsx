@@ -3,7 +3,7 @@ import RecommendationsSection from "../components/RecommendationsSection";
 import BookDetails from "../components/BookDetails";
 import FeaturedEditions from "../components/FeaturedEditions";
 import Sidebar from "../components/sidebar";
-
+import Footer from "../components/Footer";
 
 import { Carousel } from "antd";
 import {
@@ -174,6 +174,7 @@ const BookPage = () => {
           </Col>
         </Row>
       </Content>
+      <Footer />
     </Layout>
   );
 };

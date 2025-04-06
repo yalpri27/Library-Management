@@ -5,51 +5,45 @@ import {
   BookOutlined,
   ReadOutlined,
   SmileOutlined,
+  StarOutlined,
+  ShareAltOutlined,
 } from '@ant-design/icons';
 
 const { Title, Paragraph } = Typography;
 
-// Common style objects for reusability
 const stepStyle = {
   display: 'flex',
   alignItems: 'center',
-  marginBottom: '20px',
+  marginBottom: '30px',
 };
 
 const iconContainerStyle = {
   borderRadius: '50%',
-  width: '60px',
-  height: '60px',
+  width: '80px',
+  height: '80px',
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
-  fontSize: '28px',
+  fontSize: '36px',
   color: '#fff',
 };
 
 const textContainerStyle = {
-  marginLeft: '20px',
+  marginLeft: '25px',
 };
 
 const LandingPage2 = () => {
   return (
     <div
       style={{
-        backgroundColor: 'transparent',
-        minHeight: '100vh',
+        backgroundColor: '#f9f9f9',
+        padding: '100px 20px',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        padding: '0',
-        margin: '0',
-        position: 'relative',
-        zIndex: '2',
-        width: '100%',
-        top: '-80px', // Makes it smoothly overlap Page 1
-        animation: 'fadeSlideUp 1s ease-out', // Adding smooth animation
+        animation: 'fadeSlideUp 1s ease-out',
       }}
     >
-      {/* Animation for smooth entrance */}
       <style>
         {`
           @keyframes fadeSlideUp {
@@ -68,75 +62,40 @@ const LandingPage2 = () => {
       <Card
         style={{
           width: '100%',
-          maxWidth: '600px',
-          borderRadius: '10px',
-          padding: '30px',
-          boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
+          maxWidth: '900px',
+          borderRadius: '20px',
+          padding: '50px',
+          boxShadow: '0 10px 30px rgba(0, 0, 0, 0.1)',
+          backgroundColor: '#fff',
         }}
       >
-        <Title level={2} style={{ textAlign: 'center', marginBottom: '40px' }}>
-          How It Works
+        <Title level={1} style={{ textAlign: 'center', marginBottom: '60px' }}>
+          📚 How ARCHIVE Works
         </Title>
 
-        {/* Step 1 */}
-        <div style={stepStyle}>
-          <div style={{ ...iconContainerStyle, backgroundColor: '#f1c40f' }}>
-            <UserAddOutlined />
+        {[{
+          icon: <UserAddOutlined />, bg: '#f1c40f', title: 'Get Our Membership', desc: 'Sign up to unlock exclusive features and full access.'
+        }, {
+          icon: <BookOutlined />, bg: '#3498db', title: 'Explore the Library', desc: 'Discover books by genre, author, and popularity.'
+        }, {
+          icon: <ReadOutlined />, bg: '#2ecc71', title: 'Choose Your Favorite', desc: 'Bookmark or start reading your favorite books instantly.'
+        }, {
+          icon: <StarOutlined />, bg: '#9b59b6', title: 'Rate & Review', desc: 'Leave ratings and reviews for books you love.'
+        }, {
+          icon: <ShareAltOutlined />, bg: '#1abc9c', title: 'Share with Friends', desc: 'Recommend your favorite reads to others.'
+        }, {
+          icon: <SmileOutlined />, bg: '#e74c3c', title: 'Enjoy!', desc: 'Enjoy a personalized and joyful reading journey.'
+        }].map((step, index) => (
+          <div key={index} style={stepStyle}>
+            <div style={{ ...iconContainerStyle, backgroundColor: step.bg }}>
+              {step.icon}
+            </div>
+            <div style={textContainerStyle}>
+              <Title level={3} style={{ margin: 0 }}>{step.title}</Title>
+              <Paragraph style={{ margin: 0 }}>{step.desc}</Paragraph>
+            </div>
           </div>
-          <div style={textContainerStyle}>
-            <Title level={4} style={{ margin: 0 }}>
-              Get our membership
-            </Title>
-            <Paragraph style={{ margin: 0 }}>
-              Sign up for our membership to access exclusive benefits.
-            </Paragraph>
-          </div>
-        </div>
-
-        {/* Step 2 */}
-        <div style={stepStyle}>
-          <div style={{ ...iconContainerStyle, backgroundColor: '#3498db' }}>
-            <BookOutlined />
-          </div>
-          <div style={textContainerStyle}>
-            <Title level={4} style={{ margin: 0 }}>
-              Explore library
-            </Title>
-            <Paragraph style={{ margin: 0 }}>
-              Browse our extensive library of books and resources.
-            </Paragraph>
-          </div>
-        </div>
-
-        {/* Step 3 */}
-        <div style={stepStyle}>
-          <div style={{ ...iconContainerStyle, backgroundColor: '#2ecc71' }}>
-            <ReadOutlined />
-          </div>
-          <div style={textContainerStyle}>
-            <Title level={4} style={{ margin: 0 }}>
-              Your fav book
-            </Title>
-            <Paragraph style={{ margin: 0 }}>
-              Select your favorite book and dive into a new world.
-            </Paragraph>
-          </div>
-        </div>
-
-        {/* Step 4 */}
-        <div style={stepStyle}>
-          <div style={{ ...iconContainerStyle, backgroundColor: '#e74c3c' }}>
-            <SmileOutlined />
-          </div>
-          <div style={textContainerStyle}>
-            <Title level={4} style={{ margin: 0 }}>
-              Enjoy!
-            </Title>
-            <Paragraph style={{ margin: 0 }}>
-              Enjoy your reading experience and share it with friends.
-            </Paragraph>
-          </div>
-        </div>
+        ))}
       </Card>
     </div>
   );

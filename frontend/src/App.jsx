@@ -9,6 +9,7 @@ import Sidebar from "./components/sidebar";
 import ContactForm from "./components/ContactForm";
 import LandingPage from "./Pages/LandinPage";
 import Wishlist from "./components/Wishlist";
+import InputDesign from "./Pages/Library";
  // Profile Page
 
 import "./App.css";
@@ -25,7 +26,9 @@ const App = () => {
         <Route path="/footer" element={<Footer />} />
         <Route path="/sidebar" element={<Sidebar />} />
         <Route path="/" element={<LandingPage />} />
-        <Route path="Wishlist" element={<Wishlist />} />
+        <Route path="/wishlist" element={<Wishlist />} />
+        <Route path="/library" element={<InputDesign />} />
+        
       </Routes>
     </Router>
   );

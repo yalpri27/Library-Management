@@ -2,6 +2,13 @@ body{
   background-color: #fff;
 }
 
+.login-page-container {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* Login Page Container */
 .login-page {
   height: 100vh;
@@ -19,7 +26,6 @@ body{
   flex-direction: column;
   max-width: 100%;
   width: 420px;
-  margin-left: 33rem;
 }
 
 .form-header {
@@ -35,6 +41,7 @@ body{
   line-height: 1.25;
   text-align: center;
   color: rgb(2, 6, 23);
+  margin-left: 100px;
 }
 
 .login-title-text {
@@ -124,6 +131,7 @@ body{
 
 .login-button {
   width: 100%;
+  height: 50px;
   font-size: 1.5rem;
   font-weight: 700;
   text-align: center;
@@ -153,7 +161,7 @@ body{
 
 /* Sign Up Section */
 .signup-text {
-  margin-top: 3rem;
+  margin-top: 1rem;
   font-size: 1.125rem;
   line-height: 2.25;
   text-align: center;
