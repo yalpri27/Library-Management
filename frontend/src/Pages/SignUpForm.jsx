@@ -48,20 +48,24 @@ const handleImageChange = (e) => {
 
   const handleSignup = async (values) => {
     const { name, email, password, role, country } = values;
-
+  
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
-
+  
+      // Generate DiceBear avatar URL
+      const avatarURL = `https://api.dicebear.com/7.x/initials/svg?seed=${encodeURIComponent(name)}`;
+  
       // Store additional info in Firestore
       await setDoc(doc(db, "users", user.uid), {
         name,
         email,
         role,
         country,
+        avatarURL, // store avatar URL
         createdAt: new Date().toISOString(),
       });
-
+  
       message.success("Signup successful! Redirecting...");
       navigate("/library");
     } catch (error) {
@@ -69,13 +73,12 @@ const handleImageChange = (e) => {
       message.error(error.message);
     }
   };
+  
 
   return (
     <Layout className="main-container" style={{ minHeight: "100vh", background: "#f7f9fc" }}>
       <div style={{ textAlign: "right", padding: "1rem" }}>
-        <Button type="default" onClick={handleContactClick}>
-          Contact Us
-        </Button>
+        
       </div>
 
       <Content style={{ maxWidth: 600, margin: "0 auto", padding: "2rem" }}>
