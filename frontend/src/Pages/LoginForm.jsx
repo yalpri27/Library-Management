@@ -141,7 +141,7 @@ const LoginForm = () => {
 
           <p className="signup-text">
             Don't have an account?{" "}
-            <a href="#" className="signup-link">
+            <a href="signup" className="signup-link">
               Sign Up!
             </a>
           </p>
