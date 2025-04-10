@@ -1,86 +1,20 @@
 "use client";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import "./SignUpForm.css";
+import { Button, Form, Input, Select, Typography, Layout } from "antd";
+import { GoogleOutlined } from "@ant-design/icons";
 import Footer from "../components/Footer";
+import { signInWithPopup } from "firebase/auth";
+import { auth, provider } from "../../firebase";
+import "antd/dist/reset.css";
+import "./SignUpForm.css"; // Optional: Keep custom CSS for tweaks
 
-function FormInput({ label, type, placeholder, required }) {
-  return (
-    <div className="input-wrapper">
-      <label className="label">{label}</label>
-      <input
-        type={type}
-        placeholder={placeholder}
-        className="input"
-        required={required}
-      />
-    </div>
-  );
-}
-
-function RoleSelect() {
-  return (
-    <div className="select-wrapper">
-      <label className="label">Select Role</label>
-      <div className="select-container">
-        <select defaultValue="User" className="select">
-          <option value="User">User</option>
-          <option value="Admin">Admin</option>
-        </select>
-        <svg
-          width="8"
-          height="7"
-          viewBox="0 0 8 7"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="dropdown-arrow"
-        >
-          <path d="M0 0.359863H8L4 6.35986L0 0.359863Z" fill="#8A8A8A" />
-        </svg>
-      </div>
-    </div>
-  );
-}
-
-function CountrySelect() {
-  return (
-    <div className="select-wrapper">
-      <label className="label">Place/Country</label>
-      <div className="select-container">
-        <select defaultValue="India" className="select">
-          <option value="India">India</option>
-        </select>
-        <svg
-          width="8"
-          height="7"
-          viewBox="0 0 8 7"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="dropdown-arrow"
-        >
-          <path d="M0 0.359863H8L4 6.35986L0 0.359863Z" fill="#8A8A8A" />
-        </svg>
-      </div>
-    </div>
-  );
-}
-
-function ContactButton({ onClick }) {
-  return (
-    <button className="contact-button" onClick={onClick}>
-      Contact-Us
-    </button>
-  );
-}
+const { Title, Paragraph } = Typography;
+const { Option } = Select;
+const { Content } = Layout;
 
 function SignUpForm() {
   const navigate = useNavigate();
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Implement actual signup logic here
-    console.log("Signup submitted");
-  };
 
   const handleContactClick = () => {
     navigate("/contact");
@@ -90,48 +24,85 @@ function SignUpForm() {
     navigate("/login");
   };
 
+  const handleGoogleLogin = async () => {
+    try {
+      await signInWithPopup(auth, provider);
+      navigate("/library");
+    } catch (error) {
+      console.error("Error during login:", error);
+    }
+  };
+
   return (
-    <main className="main-container">
-      <div className="contact-button-wrapper">
-        <ContactButton onClick={handleContactClick} />
+    <Layout className="main-container" style={{ minHeight: "100vh", background: "#f7f9fc" }}>
+      <div style={{ textAlign: "right", padding: "1rem" }}>
+        <Button type="default" onClick={handleContactClick}>
+          Contact Us
+        </Button>
       </div>
 
-      <section className="content-section">
-        <header className="header">
-          <h1 className="title">Sign Up with Archive !</h1>
-          <p className="subtitle">Your library catalog is available anywhere, anytime.</p>
-        </header>
+      <Content style={{ maxWidth: 600, margin: "0 auto", padding: "2rem" }}>
+        <div className="form-box" style={{ background: "#fff", padding: "2rem", borderRadius: "12px", boxShadow: "0 4px 20px rgba(0,0,0,0.05)" }}>
+          <Title level={2}>Sign Up with Archive!</Title>
+          <Paragraph>Your library catalog is available anywhere, anytime.</Paragraph>
 
-        <div className="form-container">
-          <form className="form-content" onSubmit={handleSubmit}>
-            <h2 className="form-title">Account Information:</h2>
+          <Form layout="vertical">
+            <Title level={4}>Account Information:</Title>
 
-            <div className="input-grid">
-              <FormInput label="First Name" type="text" placeholder="First Name" required />
-              <FormInput label="Last Name" type="text" placeholder="Last Name" required />
-              <FormInput label="E-mail" type="email" placeholder="E-mail" required />
-              <FormInput label="Password" type="password" placeholder="Password" required />
-              <RoleSelect />
-              <CountrySelect />
-            </div>
+            {/* You can uncomment and use these when needed */}
+            {/* <Form.Item label="First Name" name="firstName" rules={[{ required: true, message: "Please enter your first name" }]}>
+              <Input placeholder="First Name" />
+            </Form.Item>
+            <Form.Item label="Last Name" name="lastName" rules={[{ required: true, message: "Please enter your last name" }]}>
+              <Input placeholder="Last Name" />
+            </Form.Item>
+            <Form.Item label="Email" name="email" rules={[{ required: true, type: "email", message: "Enter a valid email" }]}>
+              <Input placeholder="Email" />
+            </Form.Item>
+            <Form.Item label="Password" name="password" rules={[{ required: true, message: "Enter a password" }]}>
+              <Input.Password placeholder="Password" />
+            </Form.Item>
+            <Form.Item label="Role" name="role">
+              <Select defaultValue="User">
+                <Option value="User">User</Option>
+                <Option value="Admin">Admin</Option>
+              </Select>
+            </Form.Item>
+            <Form.Item label="Place/Country" name="country">
+              <Select defaultValue="India">
+                <Option value="India">India</Option>
+              </Select>
+            </Form.Item> */}
 
-            <div className="submit-section">
-              <button type="submit" className="submit-button">
-                Start My Library
-              </button>
-              <p className="login-redirect">
+            <Form.Item>
+              <Button
+                icon={<GoogleOutlined />}
+                onClick={handleGoogleLogin}
+                type="primary"
+                style={{ width: "100%", marginBottom: "1rem" }}
+              >
+                Login with Google
+              </Button>
+            </Form.Item>
+
+            <Form.Item>
+             
+              <Paragraph style={{ marginTop: "1rem" }}>
                 Already have an account?{" "}
-                <span className="login-link" onClick={handleLoginRedirect}>
+                <span
+                  onClick={handleLoginRedirect}
+                  style={{ color: "#1890ff", cursor: "pointer", textDecoration: "underline" }}
+                >
                   Log in
                 </span>
-              </p>
-            </div>
-          </form>
+              </Paragraph>
+            </Form.Item>
+          </Form>
         </div>
-      </section>
+      </Content>
 
       <Footer />
-    </main>
+    </Layout>
   );
 }
 
