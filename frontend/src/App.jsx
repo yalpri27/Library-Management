@@ -10,6 +10,7 @@ import ContactForm from "./components/ContactForm";
 import LandingPage from "./Pages/LandinPage";
 import Wishlist from "./components/Wishlist";
 import InputDesign from "./Pages/Library";
+import AddBooksAntD from "./Pages/addBooks";
  // Profile Page
 
 import "./App.css";
@@ -28,6 +29,7 @@ const App = () => {
         <Route path="/" element={<LandingPage />} />
         <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/library" element={<InputDesign />} />
+        <Route path="/addbooks" element={<AddBooksAntD />} />
         
       </Routes>
     </Router>

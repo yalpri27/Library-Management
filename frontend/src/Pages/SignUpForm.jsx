@@ -1,13 +1,16 @@
 "use client";
-import React from "react";
+
+import React, { useState } from 'react';
+
 import { useNavigate } from "react-router-dom";
-import { Button, Form, Input, Select, Typography, Layout } from "antd";
+import { Button, Form, Input, Select, Typography, Layout, message } from "antd";
 import { GoogleOutlined } from "@ant-design/icons";
 import Footer from "../components/Footer";
-import { signInWithPopup } from "firebase/auth";
-import { auth, provider } from "../../firebase";
+import { signInWithPopup, createUserWithEmailAndPassword } from "firebase/auth";
+import { auth, provider, db } from "../../firebase";
+import { doc, setDoc } from "firebase/firestore";
 import "antd/dist/reset.css";
-import "./SignUpForm.css"; // Optional: Keep custom CSS for tweaks
+import "./SignUpForm.css";
 
 const { Title, Paragraph } = Typography;
 const { Option } = Select;
@@ -20,6 +23,15 @@ function SignUpForm() {
     navigate("/contact");
   };
 
+  const [image, setImage] = useState(null);
+
+const handleImageChange = (e) => {
+  if (e.target.files[0]) {
+    setImage(e.target.files[0]);
+  }
+};
+
+
   const handleLoginRedirect = () => {
     navigate("/login");
   };
@@ -30,6 +42,31 @@ function SignUpForm() {
       navigate("/library");
     } catch (error) {
       console.error("Error during login:", error);
+      message.error("Google sign-in failed");
+    }
+  };
+
+  const handleSignup = async (values) => {
+    const { name, email, password, role, country } = values;
+
+    try {
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+
+      // Store additional info in Firestore
+      await setDoc(doc(db, "users", user.uid), {
+        name,
+        email,
+        role,
+        country,
+        createdAt: new Date().toISOString(),
+      });
+
+      message.success("Signup successful! Redirecting...");
+      navigate("/library");
+    } catch (error) {
+      console.error("Signup Error:", error);
+      message.error(error.message);
     }
   };
 
@@ -46,53 +83,51 @@ function SignUpForm() {
           <Title level={2}>Sign Up with Archive!</Title>
           <Paragraph>Your library catalog is available anywhere, anytime.</Paragraph>
 
-          <Form layout="vertical">
+          <Form layout="vertical" onFinish={handleSignup}>
             <Title level={4}>Account Information:</Title>
 
-            {/* You can uncomment and use these when needed */}
-            {/* <Form.Item label="First Name" name="firstName" rules={[{ required: true, message: "Please enter your first name" }]}>
-              <Input placeholder="First Name" />
+            <Form.Item label="Name" name="name" rules={[{ required: true, message: "Please enter your name" }]}>
+              <Input placeholder="Full Name" />
             </Form.Item>
-            <Form.Item label="Last Name" name="lastName" rules={[{ required: true, message: "Please enter your last name" }]}>
-              <Input placeholder="Last Name" />
-            </Form.Item>
+
             <Form.Item label="Email" name="email" rules={[{ required: true, type: "email", message: "Enter a valid email" }]}>
               <Input placeholder="Email" />
             </Form.Item>
-            <Form.Item label="Password" name="password" rules={[{ required: true, message: "Enter a password" }]}>
+
+            <Form.Item label="Password" name="password" rules={[{ required: true, min: 6, message: "Password must be at least 6 characters" }]}>
               <Input.Password placeholder="Password" />
             </Form.Item>
-            <Form.Item label="Role" name="role">
-              <Select defaultValue="User">
+
+            <Form.Item label="Role" name="role" initialValue="User">
+              <Select>
                 <Option value="User">User</Option>
                 <Option value="Admin">Admin</Option>
               </Select>
             </Form.Item>
-            <Form.Item label="Place/Country" name="country">
-              <Select defaultValue="India">
+
+            <Form.Item label="Place/Country" name="country" initialValue="India">
+              <Select>
                 <Option value="India">India</Option>
               </Select>
-            </Form.Item> */}
-
-            <Form.Item>
-              <Button
-                icon={<GoogleOutlined />}
-                onClick={handleGoogleLogin}
-                type="primary"
-                style={{ width: "100%", marginBottom: "1rem" }}
-              >
-                Login with Google
-              </Button>
             </Form.Item>
 
             <Form.Item>
-             
+              <Button icon={<GoogleOutlined />} onClick={handleGoogleLogin} type="primary" style={{ width: "100%", marginBottom: "1rem" }}>
+                Login with Google
+              </Button>
+            </Form.Item>
+            <Form.Item label="Profile Image">
+  <input type="file" accept="image/*" onChange={handleImageChange} />
+</Form.Item>
+
+
+            <Form.Item>
+              <Button type="primary" htmlType="submit" style={{ width: "100%" }}>
+                Start My Library
+              </Button>
               <Paragraph style={{ marginTop: "1rem" }}>
                 Already have an account?{" "}
-                <span
-                  onClick={handleLoginRedirect}
-                  style={{ color: "#1890ff", cursor: "pointer", textDecoration: "underline" }}
-                >
+                <span onClick={handleLoginRedirect} style={{ color: "#1890ff", cursor: "pointer", textDecoration: "underline" }}>
                   Log in
                 </span>
               </Paragraph>
