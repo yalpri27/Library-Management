@@ -15,7 +15,7 @@ import Wishlist from "./components/Wishlist";
 import InputDesign from "./Pages/Library";
 import AddBooksAntD from "./Pages/addBooks";
 import ProtectedRoute from "./components/ProtectedRoute"; // <-- Import protected wrapper
-
+import IssuedBooks from "./Pages/IssuedBooks";
 import "./App.css";
 
 const App = () => {
@@ -116,7 +116,7 @@ const App = () => {
         <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/library" element={<InputDesign />} />
         <Route path="/addbooks" element={<AddBooksAntD />} />
-        
+        <Route path="/issuedbooks" element={<IssuedBooks />} />
       </Routes>
     </Router>
   );
